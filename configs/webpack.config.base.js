@@ -27,6 +27,11 @@ module.exports = {
     }),
   ],
   resolve: {
-    extensions: [".mjs", ".js", ".json", "ts"],
+    extensions: [".mjs", ".js", ".json", ".ts"],
+  },
+  optimization: {
+    splitChunks: {
+      chunks: "all",
+    },
   },
 };

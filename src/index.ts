@@ -1,4 +1,6 @@
-console.log("Test code");
+import testConfig from "./test";
+
+console.log("Test code", testConfig.ts);
 
 const el = document.getElementById("test") as HTMLParagraphElement;
 
