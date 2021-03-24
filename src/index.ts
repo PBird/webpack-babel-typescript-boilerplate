@@ -2,7 +2,7 @@ console.log("Test code");
 
 const el = document.getElementById("test") as HTMLParagraphElement;
 
-el.innerText = "cc";
+el.innerText = "deneme 12121 ";
 
 async function test() {
   console.log("test 1234");

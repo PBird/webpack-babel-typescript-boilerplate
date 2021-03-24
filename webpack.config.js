@@ -1,37 +1,16 @@
-const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { merge } = require("webpack-merge");
+const baseConfig = require("./configs/webpack.config.base");
+const devConfig = require("./configs/webpack.config.dev");
+const prodConfig = require("./configs/webpack.config.prod");
 
-module.exports = {
-  mode: "development",
-  entry: "./src/index.ts",
-  output: {
-    filename: "[name].bundle.js",
-    path: path.resolve(__dirname, "dist"),
-    clean: true,
-  },
-  devtool: "inline-source-map",
-  devServer: {
-    contentBase: "./dist",
-  },
-  module: {
-    rules: [
-      {
-        test: /\.ts?$/,
-        loader: "babel-loader",
-      },
-      //   {
-      //     test: /\.js$/,
-      //     enforce: "pre",
-      //     use: ["source-map-loader"],
-      //   },
-    ],
-  },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: "src/assets/index.html",
-    }),
-  ],
-  resolve: {
-    extensions: [".mjs", ".js", ".json", "ts"],
-  },
+module.exports = (env) => {
+  console.log("deneme");
+  switch (env.NODE_ENV) {
+    case "development":
+      return merge(baseConfig, devConfig);
+    case "production":
+      return merge(baseConfig, prodConfig);
+    default:
+      throw new Error("No matching configuration was found!");
+  }
 };
